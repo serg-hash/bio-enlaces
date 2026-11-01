@@ -44,7 +44,7 @@ Gracias por querer mejorar esta plantilla. El objetivo es que cualquier creador 
 
 ## Código de conducta
 
-Sé respetuoso. No se aceptan contribuciones ofensivas, spam ni contenido que identifique a personas reales en el contenido de demostración.
+Sé respetuoso. No se aceptan contribuciones ofensivas ni spam. El contenido por defecto del repo es la página real de Sergio; el ejemplo ficticio vive en `examples/lumen-vega.config.ts` y no debe sustituirse por datos de otras personas reales.
 
 ---
 
