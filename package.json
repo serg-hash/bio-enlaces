@@ -1,0 +1,42 @@
+{
+  "name": "bio-enlaces",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Página de enlaces autoalojada para creadores. Astro estático, un solo archivo de config, lista para Hostinger y Docker.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "check": "astro check"
+  },
+  "keywords": [
+    "astro",
+    "link-in-bio",
+    "self-hosted",
+    "hostinger",
+    "docker",
+    "static-site",
+    "creator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/serg-hash/bio-enlaces.git"
+  },
+  "bugs": {
+    "url": "https://github.com/serg-hash/bio-enlaces/issues"
+  },
+  "homepage": "https://github.com/serg-hash/bio-enlaces#readme",
+  "author": "Sergio Trujillo Muñoz (serg-hash)",
+  "dependencies": {
+    "astro": "^7.4.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^5.9.3"
+  }
+}

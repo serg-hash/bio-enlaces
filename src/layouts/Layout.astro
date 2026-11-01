@@ -1,0 +1,119 @@
+---
+import "../styles/global.css";
+import { site, resolveTheme, siteUrl, type Locale } from "../config";
+import { t, pathFor } from "../i18n";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { locale, title, description, noindex = false } = Astro.props;
+const theme = resolveTheme();
+const base = siteUrl();
+const canonical = `${base}${pathFor(locale)}`;
+const ogImage = `${base}/og.png`;
+const socialUrls = site.socials.map((item) => item.url);
+
+const cssVars = [
+  `--scheme:${theme.scheme}`,
+  `--bg:${theme.bg}`,
+  `--glow-a:${theme.glowA}`,
+  `--glow-b:${theme.glowB}`,
+  `--surface:${theme.surface}`,
+  `--surface-hover:${theme.surfaceHover}`,
+  `--text:${theme.text}`,
+  `--muted:${theme.muted}`,
+  `--accent:${theme.accent}`,
+  `--accent-2:${theme.accent2}`,
+  `--border:${theme.border}`,
+  `--on-accent:${theme.onAccent}`,
+].join(";");
+---
+
+<!doctype html>
+<html lang={locale} data-theme={theme.name} style={cssVars}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content={theme.bg} />
+    <meta name="color-scheme" content={theme.scheme} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={`${base}/`} />
+    <link rel="alternate" hreflang="en" href={`${base}/en/`} />
+    <link rel="alternate" hreflang="x-default" href={`${base}/`} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content={locale === "es" ? "es_ES" : "en_US"} />
+    <meta property="og:locale:alternate" content={locale === "es" ? "en_US" : "es_ES"} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        name: title,
+        url: canonical,
+        inLanguage: locale,
+        mainEntity: {
+          "@type": "Person",
+          name: site.name,
+          alternateName: site.handle || undefined,
+          description,
+          image: `${base}${site.avatar}`,
+          url: canonical,
+          sameAs: socialUrls,
+        },
+      })}
+    />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <a class="skip" href="#contenido">{t(locale, "skip")}</a>
+    <div class="page">
+      {
+        site.showLanguageSwitch && (
+          <div class="topbar">
+            <nav class="lang" aria-label={t(locale, "lang")}>
+              <a href="/" lang="es" aria-current={locale === "es" ? "page" : undefined}>
+                ES
+              </a>
+              <a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined}>
+                EN
+              </a>
+            </nav>
+          </div>
+        )
+      }
+      <slot />
+      <footer class="footer">
+        <p>{t(locale, "footer")}</p>
+        <p>
+          {t(locale, "builtWith")}
+          {" "}
+          <a href="https://github.com/serg-hash/bio-enlaces">bio-enlaces</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

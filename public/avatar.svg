@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Avatar de demostración">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a1b66"/>
+      <stop offset="1" stop-color="#123044"/>
+    </linearGradient>
+    <linearGradient id="planet" x1="0.15" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#efe7ff"/>
+      <stop offset="0.4" stop-color="#9b8cff"/>
+      <stop offset="1" stop-color="#3ee0c5"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#3ee0c5"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="128" fill="url(#sky)"/>
+  <circle cx="198" cy="58" r="3.2" fill="#f4f6fb"/>
+  <circle cx="46" cy="78" r="2.2" fill="#f4f6fb"/>
+  <circle cx="72" cy="36" r="2.2" fill="#3ee0c5"/>
+  <circle cx="214" cy="168" r="2" fill="#f4f6fb"/>
+  <ellipse cx="128" cy="132" rx="86" ry="20" fill="none" stroke="url(#ring)" stroke-width="8" transform="rotate(-18 128 132)"/>
+  <circle cx="128" cy="128" r="62" fill="url(#planet)"/>
+  <path d="M88 116c22-24 62-30 88-6" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="108" cy="116" r="8" fill="#0b0c14" opacity=".16"/>
+  <circle cx="156" cy="120" r="13" fill="#ffffff" opacity=".22"/>
+</svg>
