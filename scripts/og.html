@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>og</title>
+    <style>
+      html, body { margin: 0; height: 100%; }
+      body {
+        width: 1200px;
+        height: 630px;
+        display: grid;
+        place-items: center;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        color: #f4f6fb;
+        background:
+          radial-gradient(900px 500px at 12% -10%, rgba(124, 106, 255, 0.5), transparent 55%),
+          radial-gradient(700px 420px at 110% 10%, rgba(62, 224, 197, 0.28), transparent 50%),
+          #07080f;
+      }
+      .card {
+        width: 1040px;
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .planet { width: 180px; height: 180px; display: block; }
+      h1 {
+        margin: 0;
+        font-size: 72px;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+      }
+      p {
+        margin: 18px 0 0;
+        font-size: 28px;
+        color: #a8b0c5;
+        max-width: 18ch;
+      }
+      .tag {
+        display: inline-block;
+        margin-top: 28px;
+        padding: 8px 16px;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 999px;
+        color: #3ee0c5;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <svg class="planet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2a1b66"/>
+            <stop offset="1" stop-color="#123044"/>
+          </linearGradient>
+          <linearGradient id="planet" x1="0.15" y1="0" x2="0.9" y2="1">
+            <stop offset="0" stop-color="#efe7ff"/>
+            <stop offset="0.4" stop-color="#9b8cff"/>
+            <stop offset="1" stop-color="#3ee0c5"/>
+          </linearGradient>
+          <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#3ee0c5"/>
+          </linearGradient>
+        </defs>
+        <rect width="256" height="256" rx="128" fill="url(#sky)"/>
+        <ellipse cx="128" cy="132" rx="86" ry="20" fill="none" stroke="url(#ring)" stroke-width="8" transform="rotate(-18 128 132)"/>
+        <circle cx="128" cy="128" r="62" fill="url(#planet)"/>
+      </svg>
+      <div>
+        <h1>bio-enlaces</h1>
+        <p>Tu página de enlaces, autoalojada.</p>
+        <span class="tag">Astro · MIT · sin rastreo</span>
+      </div>
+    </div>
+  </body>
+</html>
