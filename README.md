@@ -14,12 +14,12 @@ Página de enlaces autoalojada para creadores. Un solo archivo de configuración
 
 <p align="center"><em>Vista completa en móvil: <a href="docs/screenshot.png">docs/screenshot.png</a></em></p>
 
-La captura muestra el contenido de demostración (creadora ficticia **Lumen Vega**). Cámbialo en `src/config.ts` por el tuyo.
+El contenido por defecto es la página real de **Sergio** (`@sergiogrok`). Cámbialo en `src/config.ts` por el tuyo. Hay un ejemplo ficticio listo para copiar en [`examples/lumen-vega.config.ts`](examples/lumen-vega.config.ts).
 
 ## Características
 
 - **Un archivo de config** (`src/config.ts`): nombre, avatar, bio, enlaces, redes, tema y vídeo de YouTube opcional.
-- **Temas listos**: `midnight`, `aurora`, `sunset`, `ocean`, `forest`, `candy` (claro) y `contrast`.
+- **Temas listos**: `epic` (oscuro, batallas), `midnight`, `aurora`, `sunset`, `ocean`, `forest`, `candy` (claro) y `contrast`.
 - **Interfaz en español e inglés** (`/` y `/en/`), conmutador en la esquina.
 - **Móvil primero**, accesible (`:focus-visible`, skip-link, contraste, `prefers-reduced-motion`).
 - **SEO y redes**: title, description, canonical, hreflang, Open Graph, Twitter Card, JSON-LD, favicon, sitemap y manifest.
@@ -56,12 +56,14 @@ Edita **`src/config.ts`**. Está comentado en español e inglés. Lo habitual:
 | `site.url` | URL pública (canonical, OG, sitemap) |
 | `site.name`, `handle`, `bio` | Perfil |
 | `site.avatar` | Imagen en `public/` (p. ej. `/avatar.jpg`) |
-| `site.theme` | `"midnight"` o un objeto de colores |
+| `site.theme` | `"epic"`, `"midnight"` o un objeto de colores |
 | `site.socials` | Iconos de YouTube, X, Instagram, TikTok, Twitch, GitHub… |
 | `site.links` | Botones (título, URL, emoji o icono, `featured`) |
-| `site.featuredVideo` | `{ enabled, id, title }` — `id` es la parte después de `v=` |
+| `site.featuredVideo` | `{ enabled, id, title, shorts? }` — `id` puede ser un ID o una URL (`watch` o `/shorts/…`) |
 
-Sustituye `public/avatar.svg` por tu foto si quieres. Los pictogramas extra se añaden en `src/icons.ts`.
+Sustituye `public/avatar.png` por tu foto si quieres. Los pictogramas extra se añaden en `src/icons.ts`.
+
+¿Prefieres el demo genérico? Copia `exampleSite` de [`examples/lumen-vega.config.ts`](examples/lumen-vega.config.ts) sobre `site` en `src/config.ts`.
 
 Después:
 
@@ -114,7 +116,7 @@ Si eres el dueño del repo, en GitHub → About → Topics:
 
 ## Créditos
 
-Hecho por **Sergio Trujillo Muñoz** ([serg-hash](https://github.com/serg-hash)). El contenido de demostración es ficticio; el clip de YouTube de ejemplo es *Big Buck Bunny* (película libre de Blender Foundation).
+Hecho por **Sergio Trujillo Muñoz** ([serg-hash](https://github.com/serg-hash) / [@sergiogrok](https://x.com/sergiogrok)). El default del repo es su página de creador; el ejemplo ficticio **Lumen Vega** está en [`examples/lumen-vega.config.ts`](examples/lumen-vega.config.ts).
 
 Licencia [MIT](LICENSE). Contribuciones: [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -143,7 +145,7 @@ npm install
 npm run dev
 ```
 
-Edit `src/config.ts`, drop your avatar into `public/`, then `npm run build`. Output is `dist/`.
+Edit `src/config.ts`, drop your avatar into `public/`, then `npm run build`. Output is `dist/`. A fictional demo profile lives in `examples/lumen-vega.config.ts`.
 
 ## Deploy
 

@@ -308,6 +308,16 @@ button {
   background: var(--surface);
 }
 
+.video.short {
+  max-width: 17rem;
+  margin-inline: auto;
+}
+
+.video.short .video-hit,
+.video.short iframe {
+  aspect-ratio: 9 / 16;
+}
+
 .video-hit {
   position: relative;
   display: grid;

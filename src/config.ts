@@ -73,18 +73,41 @@ export type Social = {
 
 export type FeaturedVideo = {
   enabled: boolean;
-  /** ID del vídeo de YouTube (la parte después de v=). */
+  /**
+   * ID del vídeo, o URL completa de YouTube
+   * (`watch?v=`, `youtu.be/…` o `youtube.com/shorts/…`).
+   */
   id: string;
   title: I18nText;
+  /**
+   * true = Short (reproductor 9:16 y enlace a /shorts/ID).
+   * Si omites este campo y `id` es una URL de Shorts, se detecta solo.
+   */
+  shorts?: boolean;
 };
 
 /**
  * Temas predefinidos. Elige uno por su clave en `site.theme`,
  * o copia un objeto y ajústalo a tu marca.
  *
- * Presets: midnight, aurora, sunset, ocean, forest, candy, contrast.
+ * Presets: epic, midnight, aurora, sunset, ocean, forest, candy, contrast.
  */
 export const themes = {
+  epic: {
+    name: "epic",
+    scheme: "dark",
+    bg: "#05060c",
+    glowA: "rgba(255, 92, 28, 0.42)",
+    glowB: "rgba(61, 158, 255, 0.30)",
+    surface: "rgba(255, 255, 255, 0.06)",
+    surfaceHover: "rgba(255, 255, 255, 0.12)",
+    text: "#f6f3ee",
+    muted: "#c4b8ac",
+    accent: "#ff6b2c",
+    accent2: "#ffd166",
+    border: "rgba(255, 180, 80, 0.20)",
+    onAccent: "#140800",
+  },
   midnight: {
     name: "midnight",
     scheme: "dark",
@@ -198,6 +221,9 @@ export type ThemeName = keyof typeof themes;
  * -------------------------------------------------------------------------
  *  Tus datos  /  Your details
  * -------------------------------------------------------------------------
+ *
+ * Por defecto esta es la página de Sergio. Ejemplo ficticio (Lumen Vega):
+ * `examples/lumen-vega.config.ts`.
  */
 export const site = {
   /**
@@ -214,24 +240,24 @@ export const site = {
   showLanguageSwitch: true,
 
   /** Nombre que aparece bajo el avatar y en la pestaña del navegador. */
-  name: "Lumen Vega",
+  name: "Sergio",
 
   /** Handle o @usuario. Déjalo vacío para ocultarlo. */
-  handle: "@lumen.crea",
+  handle: "@sergiogrok",
 
   /**
    * Título corto para SEO / OG. Si lo dejas vacío se usa el nombre.
    * Short SEO/OG title. Falls back to `name` when empty.
    */
   title: {
-    es: "Lumen Vega — enlaces",
-    en: "Lumen Vega — links",
+    es: "Sergio — enlaces",
+    en: "Sergio — links",
   } satisfies I18nText,
 
   /** Descripción para buscadores y tarjetas sociales. */
   description: {
-    es: "Clips, tutoriales y mundos animados. Todos los enlaces de Lumen Vega en un solo lugar.",
-    en: "Clips, tutorials and animated worlds. All of Lumen Vega’s links in one place.",
+    es: "Batallas épicas de 10 segundos creadas con IA ⚔️ Un Short nuevo cada día. ¿Quién gana? Tú decides en los comentarios.",
+    en: "Epic 10-second battles made with AI ⚔️ A new Short every day. Who wins? You decide in the comments.",
   } satisfies I18nText,
 
   /**
@@ -242,34 +268,32 @@ export const site = {
 
   /** Texto bajo el nombre. Puede ser un string o { es, en }. */
   bio: {
-    es: "Creo mundos animados y batallas épicas con IA. Tutoriales, detrás de cámaras y un clip nuevo cada semana.",
-    en: "I make animated worlds and epic AI battles. Tutorials, behind the scenes, and a new clip every week.",
+    es: "Batallas épicas de 10 segundos creadas con IA ⚔️ Un Short nuevo cada día. ¿Quién gana? Tú decides en los comentarios.",
+    en: "Epic 10-second battles made with AI ⚔️ A new Short every day. Who wins? You decide in the comments.",
   } satisfies I18nText,
 
   /**
-   * Tema: una clave de `themes` (midnight, aurora, sunset, ocean, forest,
-   * candy, contrast) o un objeto Theme propio.
+   * Tema: una clave de `themes` (epic, midnight, aurora, sunset, ocean,
+   * forest, candy, contrast) o un objeto Theme propio.
    *
    *   theme: "sunset",
    *   theme: { ...themes.midnight, accent: "#ffb703" },
    */
-  theme: "midnight" as ThemeName | Theme,
+  theme: "epic" as ThemeName | Theme,
 
   /**
    * Vídeo destacado de YouTube (opcional).
    * El iframe solo se carga cuando la persona pulsa reproducir
    * (youtube-nocookie, sin tracking previo).
    *
-   * El ID de demostración es Big Buck Bunny, una película libre de
-   * Blender Foundation — cámbialo por tu propio vídeo.
+   * Acepta un ID, una URL watch o una URL de Shorts
+   * (`https://youtube.com/shorts/…`). Los Shorts se muestran en 9:16.
    */
   featuredVideo: {
     enabled: true,
-    id: "aqz-KE-bpKQ",
-    title: {
-      es: "Clip de demostración (película libre)",
-      en: "Demo clip (open movie)",
-    },
+    id: "https://youtube.com/shorts/w4833PaaVJ8",
+    shorts: true,
+    title: "Aurora Celeste vs Titán de Hielo",
   } satisfies FeaturedVideo,
 
   /**
@@ -277,12 +301,9 @@ export const site = {
    * `network` elige el pictograma; `url` es el destino.
    */
   socials: [
-    { network: "youtube", url: "https://www.youtube.com/@lumen.crea", label: "YouTube" },
-    { network: "x", url: "https://x.com/lumen_crea", label: "X" },
-    { network: "instagram", url: "https://instagram.com/lumen.crea", label: "Instagram" },
-    { network: "tiktok", url: "https://www.tiktok.com/@lumen.crea", label: "TikTok" },
-    { network: "twitch", url: "https://www.twitch.tv/lumencrea", label: "Twitch" },
-    { network: "github", url: "https://github.com/serg-hash/bio-enlaces", label: "GitHub" },
+    { network: "youtube", url: "https://www.youtube.com/@sergiodeloos", label: "YouTube" },
+    { network: "x", url: "https://x.com/sergiogrok", label: "X" },
+    { network: "github", url: "https://github.com/serg-hash", label: "GitHub" },
   ] satisfies Social[],
 
   /**
@@ -291,30 +312,10 @@ export const site = {
    */
   links: [
     {
-      title: { es: "Canal de YouTube", en: "YouTube channel" },
-      url: "https://www.youtube.com/@lumen.crea",
-      icon: "▶️",
+      title: { es: "Mi canal de YouTube", en: "My YouTube channel" },
+      url: "https://www.youtube.com/@sergiodeloos",
+      icon: "youtube",
       featured: true,
-    },
-    {
-      title: { es: "Shorts de la semana", en: "This week’s Shorts" },
-      url: "https://www.youtube.com/@lumen.crea/shorts",
-      icon: "⚡",
-    },
-    {
-      title: { es: "Detrás de cámaras", en: "Behind the scenes" },
-      url: "https://example.com/making-of",
-      icon: "🎬",
-    },
-    {
-      title: { es: "Comunidad", en: "Community" },
-      url: "https://example.com/comunidad",
-      icon: "💬",
-    },
-    {
-      title: { es: "Colaboraciones", en: "Collaborations" },
-      url: "mailto:hola@example.com",
-      icon: "✉️",
     },
     {
       title: { es: "Código de esta página", en: "Source code for this page" },
@@ -324,11 +325,42 @@ export const site = {
   ] satisfies Link[],
 };
 
+/** Extrae el ID de un valor que puede ser ID o URL de YouTube / Shorts. */
+export function parseYouTubeId(value: string): string {
+  const trimmed = value.trim();
+  const shorts = trimmed.match(/\/shorts\/([A-Za-z0-9_-]{6,})/);
+  if (shorts) return shorts[1];
+  const watch = trimmed.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
+  if (watch) return watch[1];
+  const be = trimmed.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+  if (be) return be[1];
+  const embed = trimmed.match(/\/embed\/([A-Za-z0-9_-]{6,})/);
+  if (embed) return embed[1];
+  return trimmed;
+}
+
+export function isYouTubeShort(video: FeaturedVideo): boolean {
+  if (video.shorts === true) return true;
+  if (video.shorts === false) return false;
+  return /\/shorts\//i.test(video.id);
+}
+
+export function youtubeWatchUrl(video: FeaturedVideo): string {
+  const id = parseYouTubeId(video.id);
+  return isYouTubeShort(video)
+    ? `https://www.youtube.com/shorts/${id}`
+    : `https://www.youtube.com/watch?v=${id}`;
+}
+
+export function youtubeEmbedUrl(id: string): string {
+  return `https://www.youtube-nocookie.com/embed/${id}`;
+}
+
 /** Resuelve el tema activo a partir de `site.theme`. */
 export function resolveTheme(): Theme {
   const selected = site.theme;
   if (typeof selected === "string") {
-    return themes[selected] ?? themes.midnight;
+    return themes[selected] ?? themes.epic;
   }
   return selected;
 }

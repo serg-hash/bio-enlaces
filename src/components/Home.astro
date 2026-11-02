@@ -1,6 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { site, localize, type Locale } from "../config";
+import {
+  site,
+  localize,
+  parseYouTubeId,
+  isYouTubeShort,
+  youtubeWatchUrl,
+  youtubeEmbedUrl,
+  type Locale,
+} from "../config";
 import { t } from "../i18n";
 import { iconSvg, networkLabels } from "../icons";
 
@@ -14,7 +22,9 @@ const description = localize(site.description, locale);
 const bio = localize(site.bio, locale);
 const video = site.featuredVideo;
 const videoTitle = video.enabled ? localize(video.title, locale) : "";
-const watchPage = video.enabled ? `https://www.youtube.com/watch?v=${video.id}` : "";
+const videoId = video.enabled ? parseYouTubeId(video.id) : "";
+const videoIsShort = video.enabled && isYouTubeShort(video);
+const watchPage = video.enabled ? youtubeWatchUrl(video) : "";
 
 function isExternal(url: string) {
   return /^https?:\/\//i.test(url);
@@ -71,7 +81,12 @@ function isExternal(url: string) {
           <h2 class="section-title" id="video-title">
             {t(locale, "featured")}
           </h2>
-          <div class="video" data-youtube={video.id} data-title={videoTitle}>
+          <div
+            class:list={["video", { short: videoIsShort }]}
+            data-youtube={videoId}
+            data-embed={youtubeEmbedUrl(videoId)}
+            data-title={videoTitle}
+          >
             <a class="video-hit" href={watchPage} target="_blank" rel="noopener noreferrer">
               <span class="play" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
@@ -135,14 +150,14 @@ function isExternal(url: string) {
     <script>
       document.querySelectorAll<HTMLElement>("[data-youtube]").forEach((box) => {
         const trigger = box.querySelector(".video-hit");
-        const id = box.dataset.youtube;
+        const embed = box.dataset.embed;
         const title = box.dataset.title || "YouTube";
-        if (!trigger || !id) return;
+        if (!trigger || !embed) return;
 
         trigger.addEventListener("click", (event) => {
           event.preventDefault();
           const iframe = document.createElement("iframe");
-          iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+          iframe.src = `${embed}?autoplay=1&playsinline=1`;
           iframe.title = title;
           iframe.allow =
             "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
