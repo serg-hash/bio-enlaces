@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { localize, site } from "../config";
+import { localize, site, withBase } from "../config";
 import { t } from "../i18n";
 
 const locale = "es";
@@ -15,6 +15,6 @@ const locale = "es";
   <main class="not-found" id="contenido">
     <h1>404</h1>
     <p>{t(locale, "notFound")}</p>
-    <a href="/">{t(locale, "backHome")}</a>
+    <a href={withBase("/")}>{t(locale, "backHome")}</a>
   </main>
 </Layout>

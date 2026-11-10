@@ -1,23 +1,22 @@
 /**
  * ============================================================================
- *  Ejemplo ficticio — Lumen Vega
- *  Fictional example — Lumen Vega
+ *  Ejemplo ficticio — Lumen Vega (contenido por defecto)
+ *  Fictional example — Lumen Vega (default content)
  * ============================================================================
  *
- * ES: El contenido por defecto del repo es la página real de Sergio.
- *     Si quieres una demo genérica (sin datos de una persona real), copia
- *     el objeto `exampleSite` sobre `site` en `src/config.ts`, apunta
- *     `avatar` a `/examples/lumen-vega-avatar.png` y vuelve a construir.
+ * ES: Este es el perfil que el repo usa por defecto en `src/config.ts`.
+ *     Está duplicado aquí para que puedas restaurar la demo genérica
+ *     después de probar otro ejemplo (por ejemplo `sergio.config.ts`).
  *
- * EN: The default content in this repo is Sergio’s live page. For a
- *     generic demo, copy `exampleSite` over `site` in `src/config.ts`,
- *     set `avatar` to `/examples/lumen-vega-avatar.png`, and rebuild.
+ * EN: This is the profile the repo uses by default in `src/config.ts`.
+ *     It is duplicated here so you can restore the generic demo after
+ *     trying another example (for instance `sergio.config.ts`).
  */
 
 import type { FeaturedVideo, I18nText, Link, Social, ThemeName } from "../src/config";
 
 export const exampleSite = {
-  url: "https://example.com",
+  url: "https://serg-hash.github.io/bio-enlaces",
   defaultLocale: "es" as const,
   showLanguageSwitch: true,
   name: "Lumen Vega",

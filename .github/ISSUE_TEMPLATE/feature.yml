@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an improvement / Propón una mejora
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep the project static, tracker-free and secret-free.
+        El sitio debe seguir siendo estático, sin rastreo y sin secretos.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Problema
+      description: What is hard or missing today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal / Propuesta
+      description: What should change? Themes, icons, i18n, docs…
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context / Contexto extra

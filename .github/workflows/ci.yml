@@ -30,3 +30,11 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Build with GitHub Pages base path
+        run: npm run build
+        env:
+          BASE_PATH: /bio-enlaces/
+
+      - name: Assert Pages base path in output
+        run: grep -q '/bio-enlaces/' dist/index.html
