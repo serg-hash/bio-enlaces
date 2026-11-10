@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { site, resolveTheme, siteUrl, type Locale } from "../config";
+import { site, resolveTheme, siteUrl, withBase, type Locale } from "../config";
 import { t, pathFor } from "../i18n";
 
 interface Props {
@@ -50,10 +50,10 @@ const cssVars = [
     <link rel="alternate" hreflang="es" href={`${base}/`} />
     <link rel="alternate" hreflang="en" href={`${base}/en/`} />
     <link rel="alternate" hreflang="x-default" href={`${base}/`} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={withBase("/favicon.ico")} sizes="any" />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
+    <link rel="manifest" href={withBase("/site.webmanifest")} />
     <meta property="og:type" content="profile" />
     <meta property="og:locale" content={locale === "es" ? "es_ES" : "en_US"} />
     <meta property="og:locale:alternate" content={locale === "es" ? "en_US" : "es_ES"} />
@@ -95,10 +95,10 @@ const cssVars = [
         site.showLanguageSwitch && (
           <div class="topbar">
             <nav class="lang" aria-label={t(locale, "lang")}>
-              <a href="/" lang="es" aria-current={locale === "es" ? "page" : undefined}>
+              <a href={withBase("/")} lang="es" aria-current={locale === "es" ? "page" : undefined}>
                 ES
               </a>
-              <a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined}>
+              <a href={withBase("/en/")} lang="en" aria-current={locale === "en" ? "page" : undefined}>
                 EN
               </a>
             </nav>

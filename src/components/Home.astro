@@ -7,6 +7,7 @@ import {
   isYouTubeShort,
   youtubeWatchUrl,
   youtubeEmbedUrl,
+  withBase,
   type Locale,
 } from "../config";
 import { t } from "../i18n";
@@ -37,7 +38,7 @@ function isExternal(url: string) {
       <span class="avatar-ring" aria-hidden="true"></span>
       <img
         class="avatar"
-        src={site.avatar}
+        src={withBase(site.avatar)}
         alt={`${t(locale, "profileImage")} ${site.name}`}
         width="116"
         height="116"

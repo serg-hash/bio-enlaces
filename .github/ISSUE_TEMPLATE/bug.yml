@@ -1,0 +1,47 @@
+name: Bug report
+description: Something does not work as expected / Algo no funciona
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem in Spanish or English.
+        Describe el problema en español o en inglés.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? / ¿Qué ocurrió?
+      placeholder: Expected vs actual. Esperado vs real.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce / Pasos para reproducirlo
+      placeholder: |
+        1. npm run dev
+        2. …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / Versión
+      description: Release tag, commit SHA, or "main".
+      placeholder: v0.1.0
+  - type: dropdown
+    id: deploy
+    attributes:
+      label: Where are you running it? / ¿Dónde lo ejecutas?
+      options:
+        - Local (`npm run dev` / `npm run preview`)
+        - GitHub Pages
+        - Hostinger
+        - Docker / VPS
+        - Other static host
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context / Contexto extra
+      description: Screenshots, `npm run check` output, browser.

@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { localize, resolveTheme, site } from "../config";
+import { localize, resolveTheme, site, withBase } from "../config";
 
 export const GET: APIRoute = () => {
   const theme = resolveTheme();
@@ -7,14 +7,14 @@ export const GET: APIRoute = () => {
     name: site.name,
     short_name: site.name,
     description: localize(site.description, site.defaultLocale),
-    start_url: "/",
+    start_url: withBase("/"),
     display: "standalone",
     background_color: theme.bg,
     theme_color: theme.bg,
     lang: site.defaultLocale,
     icons: [
-      { src: "/favicon.svg", type: "image/svg+xml", sizes: "any", purpose: "any" },
-      { src: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" },
+      { src: withBase("/favicon.svg"), type: "image/svg+xml", sizes: "any", purpose: "any" },
+      { src: withBase("/apple-touch-icon.png"), type: "image/png", sizes: "180x180" },
     ],
   };
 

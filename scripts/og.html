@@ -11,11 +11,11 @@
         display: grid;
         place-items: center;
         font-family: "Segoe UI", system-ui, sans-serif;
-        color: #f6f3ee;
+        color: #f4f6fb;
         background:
-          radial-gradient(900px 500px at 8% -8%, rgba(255, 92, 28, 0.42), transparent 55%),
-          radial-gradient(720px 420px at 108% 12%, rgba(61, 158, 255, 0.32), transparent 50%),
-          #05060c;
+          radial-gradient(900px 500px at 8% -8%, rgba(124, 106, 255, 0.42), transparent 55%),
+          radial-gradient(720px 420px at 108% 12%, rgba(62, 224, 197, 0.28), transparent 50%),
+          #07080f;
       }
       .card {
         width: 1040px;
@@ -24,26 +24,26 @@
         gap: 48px;
         align-items: center;
       }
-      .emblem { width: 180px; height: 180px; display: block; }
+      .emblem { width: 180px; height: 180px; display: block; border-radius: 50%; }
       h1 {
         margin: 0;
-        font-size: 72px;
+        font-size: 64px;
         letter-spacing: -0.04em;
         line-height: 0.95;
       }
       p {
         margin: 18px 0 0;
         font-size: 26px;
-        color: #c8bfb4;
-        max-width: 22ch;
+        color: #a8b0c5;
+        max-width: 28ch;
       }
       .tag {
         display: inline-block;
         margin-top: 28px;
         padding: 8px 16px;
-        border: 1px solid rgba(255, 180, 80, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.16);
         border-radius: 999px;
-        color: #ffd166;
+        color: #3ee0c5;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -53,36 +53,37 @@
   </head>
   <body>
     <div class="card">
-      <svg class="emblem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+      <svg class="emblem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-hidden="true">
         <defs>
-          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#161b32"/>
-            <stop offset="1" stop-color="#07060c"/>
+          <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2a1b66"/>
+            <stop offset="1" stop-color="#123044"/>
+          </linearGradient>
+          <linearGradient id="planet" x1="0.15" y1="0" x2="0.9" y2="1">
+            <stop offset="0" stop-color="#efe7ff"/>
+            <stop offset="0.4" stop-color="#9b8cff"/>
+            <stop offset="1" stop-color="#3ee0c5"/>
           </linearGradient>
           <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ff6b2c"/>
-            <stop offset="0.45" stop-color="#ffd166"/>
-            <stop offset="1" stop-color="#3d9eff"/>
-          </linearGradient>
-          <linearGradient id="letter" x1="0.2" y1="0" x2="0.85" y2="1">
-            <stop offset="0" stop-color="#fff1c4"/>
-            <stop offset="0.4" stop-color="#ffc44d"/>
-            <stop offset="1" stop-color="#ff5a1f"/>
-          </linearGradient>
-          <linearGradient id="bolt" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#b8e4ff"/>
-            <stop offset="1" stop-color="#3d9eff"/>
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#3ee0c5"/>
           </linearGradient>
         </defs>
-        <rect width="256" height="256" rx="128" fill="url(#bg)"/>
-        <circle cx="128" cy="128" r="112" fill="none" stroke="url(#ring)" stroke-width="10"/>
-        <path fill="url(#bolt)" d="M154 38 92 132h38L86 218l92-108h-40L176 38z"/>
-        <path fill="url(#letter)" d="M176.5 86c0-28.5-23-50-54.5-50-38 0-59 24-61.5 51.5h33.5c2.2-13.5 11.5-24 28-24 16.5 0 24.5 9 24.5 21.5 0 14.5-9.5 20.5-34 29.5-33.5 12.5-54.5 27.5-54.5 58 0 32.5 25 54 60 54 40 0 63.5-24 67-54.5h-33.5c-2.8 15-13 26.5-33.5 26.5-18.5 0-27-10.5-27-23.5 0-14.5 10.5-21 35.5-30.5 34-13 50-28 50-54.5z"/>
+        <rect width="256" height="256" rx="128" fill="url(#sky)"/>
+        <circle cx="198" cy="58" r="3.2" fill="#f4f6fb"/>
+        <circle cx="46" cy="78" r="2.2" fill="#f4f6fb"/>
+        <circle cx="72" cy="36" r="2.2" fill="#3ee0c5"/>
+        <circle cx="214" cy="168" r="2" fill="#f4f6fb"/>
+        <ellipse cx="128" cy="132" rx="86" ry="20" fill="none" stroke="url(#ring)" stroke-width="8" transform="rotate(-18 128 132)"/>
+        <circle cx="128" cy="128" r="62" fill="url(#planet)"/>
+        <path d="M88 116c22-24 62-30 88-6" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="108" cy="116" r="8" fill="#0b0c14" opacity=".16"/>
+        <circle cx="156" cy="120" r="13" fill="#ffffff" opacity=".22"/>
       </svg>
       <div>
-        <h1>Sergio</h1>
-        <p>Batallas épicas de 10 segundos creadas con IA.</p>
-        <span class="tag">@sergiogrok · YouTube Shorts</span>
+        <h1>Lumen Vega</h1>
+        <p>Clips, tutoriales y mundos animados. Todos los enlaces en un solo lugar.</p>
+        <span class="tag">@lumen.crea · demo</span>
       </div>
     </div>
   </body>

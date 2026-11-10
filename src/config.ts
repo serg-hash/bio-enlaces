@@ -217,21 +217,45 @@ export const themes = {
 
 export type ThemeName = keyof typeof themes;
 
+/** Forma del objeto `site`. Copia un ejemplo de `examples/` sobre este tipo. */
+export type Site = {
+  url: string;
+  defaultLocale: Locale;
+  showLanguageSwitch: boolean;
+  name: string;
+  handle: string;
+  title: I18nText;
+  description: I18nText;
+  avatar: string;
+  bio: I18nText;
+  theme: ThemeName | Theme;
+  featuredVideo: FeaturedVideo;
+  socials: Social[];
+  links: Link[];
+};
+
 /**
  * -------------------------------------------------------------------------
  *  Tus datos  /  Your details
  * -------------------------------------------------------------------------
  *
- * Por defecto esta es la página de Sergio. Ejemplo ficticio (Lumen Vega):
- * `examples/lumen-vega.config.ts`.
+ * Por defecto el repo muestra un perfil ficticio (Lumen Vega) para que la
+ * demo pública no parezca un sitio personal. La página real de Sergio está
+ * en `examples/sergio.config.ts`: copia ese objeto sobre `site` si la quieres.
+ *
+ * By default this repo shows a fictional profile (Lumen Vega) so the public
+ * demo is not a personal site. Sergio’s live page is in
+ * `examples/sergio.config.ts` — copy that object over `site` to use it.
  */
 export const site = {
   /**
    * URL pública de tu página, sin barra final.
    * Se usa en canonical, Open Graph y el sitemap.
    * Public URL of your page, no trailing slash.
+   *
+   * Demo: GitHub Pages. Cámbiala al desplegar en tu dominio.
    */
-  url: "https://example.com",
+  url: "https://serg-hash.github.io/bio-enlaces",
 
   /** Idioma por defecto de la UI (la otra versión vive en /en/). */
   defaultLocale: "es" as Locale,
@@ -240,36 +264,36 @@ export const site = {
   showLanguageSwitch: true,
 
   /** Nombre que aparece bajo el avatar y en la pestaña del navegador. */
-  name: "Sergio",
+  name: "Lumen Vega",
 
   /** Handle o @usuario. Déjalo vacío para ocultarlo. */
-  handle: "@sergiogrok",
+  handle: "@lumen.crea",
 
   /**
    * Título corto para SEO / OG. Si lo dejas vacío se usa el nombre.
    * Short SEO/OG title. Falls back to `name` when empty.
    */
   title: {
-    es: "Sergio — enlaces",
-    en: "Sergio — links",
+    es: "Lumen Vega — enlaces",
+    en: "Lumen Vega — links",
   } satisfies I18nText,
 
   /** Descripción para buscadores y tarjetas sociales. */
   description: {
-    es: "Batallas épicas de 10 segundos creadas con IA ⚔️ Un Short nuevo cada día. ¿Quién gana? Tú decides en los comentarios.",
-    en: "Epic 10-second battles made with AI ⚔️ A new Short every day. Who wins? You decide in the comments.",
+    es: "Clips, tutoriales y mundos animados. Todos los enlaces de Lumen Vega en un solo lugar.",
+    en: "Clips, tutorials and animated worlds. All of Lumen Vega’s links in one place.",
   } satisfies I18nText,
 
   /**
    * Foto de perfil. Coloca el archivo en /public (por ejemplo public/avatar.svg)
    * y referencia la ruta pública: "/avatar.svg".
    */
-  avatar: "/avatar.png",
+  avatar: "/examples/lumen-vega-avatar.png",
 
   /** Texto bajo el nombre. Puede ser un string o { es, en }. */
   bio: {
-    es: "Batallas épicas de 10 segundos creadas con IA ⚔️ Un Short nuevo cada día. ¿Quién gana? Tú decides en los comentarios.",
-    en: "Epic 10-second battles made with AI ⚔️ A new Short every day. Who wins? You decide in the comments.",
+    es: "Creo mundos animados y batallas épicas con IA. Tutoriales, detrás de cámaras y un clip nuevo cada semana.",
+    en: "I make animated worlds and epic AI battles. Tutorials, behind the scenes, and a new clip every week.",
   } satisfies I18nText,
 
   /**
@@ -279,7 +303,7 @@ export const site = {
    *   theme: "sunset",
    *   theme: { ...themes.midnight, accent: "#ffb703" },
    */
-  theme: "epic" as ThemeName | Theme,
+  theme: "midnight" as ThemeName | Theme,
 
   /**
    * Vídeo destacado de YouTube (opcional).
@@ -291,9 +315,11 @@ export const site = {
    */
   featuredVideo: {
     enabled: true,
-    id: "https://youtube.com/shorts/w4833PaaVJ8",
-    shorts: true,
-    title: "Aurora Celeste vs Titán de Hielo",
+    id: "aqz-KE-bpKQ",
+    title: {
+      es: "Clip de demostración (película libre)",
+      en: "Demo clip (open movie)",
+    },
   } satisfies FeaturedVideo,
 
   /**
@@ -301,9 +327,12 @@ export const site = {
    * `network` elige el pictograma; `url` es el destino.
    */
   socials: [
-    { network: "youtube", url: "https://www.youtube.com/@sergiodeloos", label: "YouTube" },
-    { network: "x", url: "https://x.com/sergiogrok", label: "X" },
-    { network: "github", url: "https://github.com/serg-hash", label: "GitHub" },
+    { network: "youtube", url: "https://www.youtube.com/@lumen.crea", label: "YouTube" },
+    { network: "x", url: "https://x.com/lumen_crea", label: "X" },
+    { network: "instagram", url: "https://instagram.com/lumen.crea", label: "Instagram" },
+    { network: "tiktok", url: "https://www.tiktok.com/@lumen.crea", label: "TikTok" },
+    { network: "twitch", url: "https://www.twitch.tv/lumencrea", label: "Twitch" },
+    { network: "github", url: "https://github.com/serg-hash/bio-enlaces", label: "GitHub" },
   ] satisfies Social[],
 
   /**
@@ -312,10 +341,30 @@ export const site = {
    */
   links: [
     {
-      title: { es: "Mi canal de YouTube", en: "My YouTube channel" },
-      url: "https://www.youtube.com/@sergiodeloos",
-      icon: "youtube",
+      title: { es: "Canal de YouTube", en: "YouTube channel" },
+      url: "https://www.youtube.com/@lumen.crea",
+      icon: "▶️",
       featured: true,
+    },
+    {
+      title: { es: "Shorts de la semana", en: "This week’s Shorts" },
+      url: "https://www.youtube.com/@lumen.crea/shorts",
+      icon: "⚡",
+    },
+    {
+      title: { es: "Detrás de cámaras", en: "Behind the scenes" },
+      url: "https://example.com/making-of",
+      icon: "🎬",
+    },
+    {
+      title: { es: "Comunidad", en: "Community" },
+      url: "https://example.com/comunidad",
+      icon: "💬",
+    },
+    {
+      title: { es: "Colaboraciones", en: "Collaborations" },
+      url: "mailto:hola@example.com",
+      icon: "✉️",
     },
     {
       title: { es: "Código de esta página", en: "Source code for this page" },
@@ -323,7 +372,7 @@ export const site = {
       icon: "github",
     },
   ] satisfies Link[],
-};
+} satisfies Site;
 
 /** Extrae el ID de un valor que puede ser ID o URL de YouTube / Shorts. */
 export function parseYouTubeId(value: string): string {
@@ -373,4 +422,19 @@ export function localize(value: I18nText, locale: Locale): string {
 
 export function siteUrl(): string {
   return site.url.replace(/\/+$/, "");
+}
+
+/**
+ * Prefija una ruta interna o un archivo de `public/` con el `base` de Astro.
+ * En GitHub Pages el sitio vive en `/bio-enlaces/`; en Hostinger y en local, en `/`.
+ * Prefix an internal path or `public/` asset with Astro’s `base`.
+ */
+export function withBase(path: string): string {
+  if (/^(https?:)?\/\//i.test(path) || /^(data|mailto|tel|blob):/i.test(path)) {
+    return path;
+  }
+  const root = import.meta.env?.BASE_URL || "/";
+  const normalizedRoot = root.endsWith("/") ? root : `${root}/`;
+  const trimmed = path.replace(/^\/+/, "");
+  return trimmed ? `${normalizedRoot}${trimmed}` : normalizedRoot;
 }
